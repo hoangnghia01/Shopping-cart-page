@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import React, { useState, useContext } from 'react';
 
-function App() {
+
+
+
+import { AppProvider } from './AppContext';
+import Products from './components2/products/Products';
+import Cart from './components2/card/Cart';
+
+import Header1 from './components2/header1/Header1';
+export default function App() {
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <div>
 
-export default App;
+      <AppProvider>
+        <Header1/>
+      <Routes>
+        <Route path='/' element={<Products />}></Route>
+        <Route path='/cart' element={<Cart />}></Route>
+        </Routes>
+      </AppProvider>
+      
+    </div>
+
+
+    
+  )
+}
